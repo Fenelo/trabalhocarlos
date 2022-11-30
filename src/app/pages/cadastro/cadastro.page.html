@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Adicionar Música</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <form [formGroup]="form_cadastrar" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label>Insira os dados da Música</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Nome da Música" formControlName="nome"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="((errorControl.nome.touched ||
+    errorControl.nome.dirty) && errorControl.nome.errors)">
+      <span *ngIf="errorControl.nome.errors.required">
+        Nome da Música é obrigatório!
+      </span>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Ano de Lançamento" formControlName="anoLancamento"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="((errorControl.anoLancamento.touched ||
+    errorControl.anoLancamento.dirty) && errorControl.anoLancamento.errors)">
+      <span *ngIf="errorControl.anoLancamento.errors?.required">
+       Ano de Lançamento da música é obrigatório!
+      </span>
+      <span *ngIf="errorControl.anoLancamento.errors?.minlength">
+       Ano de Lançamento da música precisa ter 4   carácteres!
+      </span>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="Gênero da Música" formControlName="genero">
+        <ion-select-option value="masculino">Rock</ion-select-option>
+        <ion-select-option value="feminino">Pop</ion-select-option>
+        <ion-select-option value="não-declarado">Funk</ion-select-option>
+        <ion-select-option value="não-declarado">Sertanejo</ion-select-option>
+        <ion-select-option value="não-declarado">Gospel</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    
+    <ion-item *ngIf="((errorControl.genero.touched ||
+    errorControl.genero.dirty) && errorControl.genero.errors)">
+      <span *ngIf="errorControl.genero.errors.required">
+        Gênero da Música é obrigatório!
+      </span>
+    </ion-item>
+  
+    <ion-item>
+      <ion-button size="default" color="danger" shape="round">
+        <input type="file" formControlName="imagem"
+        (change)="uploadFile($event.target)"/>
+      </ion-button>
+    </ion-item>
+    <ion-item *ngIf="((errorControl.imagem.touched ||
+    errorControl.imagem.dirty) && errorControl.imagem.errors)">
+      <span *ngIf="errorControl.imagem.errors.required">
+        Imagem da Música é obrigatória!
+      </span>
+    </ion-item>
+
+
+    <ion-button expand="block" type="submit" color="dark">Adicionar Musica</ion-button>
+  </form>
+  </ion-list>
+</ion-content>

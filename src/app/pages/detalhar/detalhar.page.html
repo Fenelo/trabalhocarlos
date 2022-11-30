@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>detalhar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <form [formGroup]="form_cadastrar" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label>Habilitar Edição</ion-label>
+      <ion-toggle (ionChange)="alterarEdicao()"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Editar Contato</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Nome" formControlName="nome"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-select placeholder="Gênero da Música" formControlName="genero">
+        <ion-select-option value="masculino">Rock</ion-select-option>
+        <ion-select-option value="feminino">Pop</ion-select-option>
+        <ion-select-option value="não-declarado">Funk</ion-select-option>
+        <ion-select-option value="não-declarado">Sertanejo</ion-select-option>
+        <ion-select-option value="não-declarado">Gospel</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <img src="{{musica.downloadURL}}"/>
+    </ion-item>
+    <ion-button disabled="{{edicao}}" expand="block" type="submit">Salvar</ion-button>
+  </form>
+
+  </ion-list>
+  <ion-button disabled="{{edicao}}" expand="block" color="danger" (click)="excluir()">Excluir</ion-button>
+</ion-content>
